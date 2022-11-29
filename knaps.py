@@ -14,7 +14,7 @@ from sklearn.datasets import make_classification
 from sklearn.svm import SVC
 
 st.write(""" 
-# Cek data
+# Negara Bijaksana
 """)
 
 st.write("=========================================================================")
