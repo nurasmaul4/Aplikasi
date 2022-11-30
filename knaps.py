@@ -38,7 +38,7 @@ with Deskripsi_dataset:
     st.write("""# Deskripsi""")
     st.write("Malnutrisi terus menjadi alasan yang membuat anak-anak jauh lebih rentan terhadap penyakit dan kematian.")
     st.write("Ada 4 jenis malnutrisi: wasting, stunting, underweight, dan overweight.")
-    st.write("Wasting Berat - % anak usia 0–59 bulan yang berada di bawah minus tiga standar deviasi dari rata-rata berat badan terhadap tinggi badan
+    st.write("Wasting Berat - % anak usia 0–59 bulan yang berada di bawah minus tiga standar deviasi dari rata-rata berat badan terhadap tinggi badan.")
     st.write("1. Wasting – Sedang dan parah: % anak usia 0–59 bulan yang berada di bawah minus dua standar deviasi dari median berat badan- untuk-tinggi.")
     st.write("2. Kegemukan – Sedang dan berat: % usia 0-59 bulan yang berada di atas dua standar deviasi dari rata-rata berat badan terhadap tinggi badan.")
     st.write("3. Stunting – Sedang dan berat: % anak usia 0–59 bulan yang berada di bawah minus dua standar deviasi dari median tinggi-untuk-usia.")
