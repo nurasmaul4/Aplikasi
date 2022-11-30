@@ -22,7 +22,7 @@ from sklearn.utils.validation import joblib
 
 
 st.title("DATA MINING")
-st.subtitle("Prediksi Penurunan/Peningkatan Jumlah Kasus Gizi Buruk")
+st.write("""# Prediksi Penurunan/Peningkatan Jumlah Kasus Gizi Buruk""")
 st.write("By: Nur Asmaul Khusna - 200411100012")
 upload_data, Deskripsi_dataset, preporcessing, modeling, implementation = st.tabs(["Upload Data", "Description", "Prepocessing", "Modeling", "Implementation"])
 
