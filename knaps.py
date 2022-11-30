@@ -23,7 +23,7 @@ from sklearn.utils.validation import joblib
 
 st.title("DATA MINING")
 st.write("By: Nur Asmaul Khusna - 200411100012")
-upload_data, preporcessing, modeling, implementation = st.tabs(["Upload Data", "Prepocessing", "Modeling", "Implementation"])
+upload_data, Deskripsi_dataset, preporcessing, modeling, implementation = st.tabs(["Upload Data", "Description", "Prepocessing", "Modeling", "Implementation"])
 
 
 with upload_data:
@@ -36,7 +36,13 @@ with upload_data:
         
 with Deskripsi_dataset:
     st.write("""# Deskripsi""")
-    st.write("abcdefghijkl")
+    st.write("Malnutrisi terus menjadi alasan yang membuat anak-anak jauh lebih rentan terhadap penyakit dan kematian.")
+    st.write("Ada 4 jenis malnutrisi: wasting, stunting, underweight, dan overweight.")
+    st.write("Wasting Berat - % anak usia 0–59 bulan yang berada di bawah minus tiga standar deviasi dari rata-rata berat badan terhadap tinggi badan
+    st.write("1. Wasting – Sedang dan parah: % anak usia 0–59 bulan yang berada di bawah minus dua standar deviasi dari median berat badan- untuk-tinggi.")
+    st.write("2. Kegemukan – Sedang dan berat: % usia 0-59 bulan yang berada di atas dua standar deviasi dari rata-rata berat badan terhadap tinggi badan.")
+    st.write("3. Stunting – Sedang dan berat: % anak usia 0–59 bulan yang berada di bawah minus dua standar deviasi dari median tinggi-untuk-usia.")
+    st.write("4. Kekurangan berat badan – Sedang dan berat: % anak usia 0–59 bulan yang berada di bawah minus dua standar deviasi dari rata-rata berat badan-untuk-usia.")
 
 with preporcessing:
     st.write("""# Preprocessing""")
