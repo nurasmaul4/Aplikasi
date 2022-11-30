@@ -71,8 +71,8 @@ with preporcessing:
     # Suppress warnings
     import warnings; warnings.filterwarnings('ignore')
 
-    data = pd.read_csv('../input/malnutrition-across-the-globe/malnutrition-estimates.csv')
-    data_by_country = pd.read_csv('../input/malnutrition-across-the-globe/country-wise-average.csv')
+    data = pd.read_csv('https://raw.githubusercontent.com/nurasmaul4/Aplikasi/main/country-wise-average%20(2).csv')
+    data_by_country = pd.read_csv('https://raw.githubusercontent.com/nurasmaul4/Aplikasi/main/country-wise-average%20(2).csv')
     data.drop(['Unnamed: 0','ISO code','Survey Year','Source','Report Author','Notes','Short Source'], axis=1, inplace=True)
 
     def income_map(val):
