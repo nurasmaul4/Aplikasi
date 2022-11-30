@@ -352,5 +352,5 @@ with modeling:
 #             """## Decision Tree"""
 #             st.write('Model Decission Tree Accuracy Score: {0:0.2f}'.format(akur))
 
-with implementation:
-    st.write("# Implementation")
+    with implementation:
+        st.write("# Implementation")
