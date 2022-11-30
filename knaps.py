@@ -112,7 +112,7 @@ with preporcessing:
     "#Univariate Analysis"
     # Functions that will help us with EDA plot
     def odp_plots(df, col):
-    f,(ax1, ax2, ax3) = plt.subplots(1, 3, figsize = (15, 7.2))
+        f,(ax1, ax2, ax3) = plt.subplots(1, 3, figsize = (15, 7.2))
     
     # Boxplot to check outliers
     sns.boxplot(x = col, data = df, ax = ax1, orient = 'v', color = 'darkslategrey')
