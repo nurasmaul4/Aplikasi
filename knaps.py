@@ -50,7 +50,7 @@ with preporcessing:
     import numpy as np # linear algebra
     import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
    
-    estimate=pd.read_csv("https://raw.githubusercontent.com/nurasmaul4/Aplikasi/main/country-wise-average%20(2).csv")
+    df =pd.read_csv("https://raw.githubusercontent.com/nurasmaul4/Aplikasi/main/country-wise-average%20(2).csv")
     average=pd.read_csv("https://raw.githubusercontent.com/nurasmaul4/Aplikasi/main/country-wise-average%20(2).csv")
     average.head()
     
