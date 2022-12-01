@@ -47,200 +47,29 @@ with Deskripsi_dataset:
 
 with preporcessing:
     st.write("""# Preprocessing""")
-    import numpy as np
     import pandas as pd
+    import matplotlib.pyplot as plt
+    import seaborn as sns
     
-    # Display settings
-    pd.options.display.max_rows = 400
-    pd.options.display.max_columns = 100
-    pd.options.display.float_format = "{:.2f}".format
+    df = pd.read_csv("https://raw.githubusercontent.com/nurasmaul4/Aplikasi/main/country-wise-average%20(2).csv")
+    
+    import plotly.express as px
+    name = df.groupby("Country")["Stunting"].mean().sort_values(ascending=False).index[:50]
+    yax = df.groupby("Country")["Stunting"].mean().sort_values(ascending=False).round()[:50]
 
-    random_state = 42
-    np.random.seed(random_state)
-    
-    # Suppress warnings
-    import warnings; warnings.filterwarnings('ignore')
+    fig = px.bar(df, y=yax, x=name, color = name, color_discrete_sequence=px.colors.sequential.Blugrn)
+    fig.update_layout(
+        title="Stunting Top 50 Countries",
+        xaxis_title="Country name",
+        yaxis_title="Count"
+    )
+    fig.update_xaxes(tickangle=-45)
 
-    data = pd.read_csv('https://raw.githubusercontent.com/nurasmaul4/Aplikasi/main/country-wise-average%20(2).csv')
-    data_by_country = pd.read_csv('https://raw.githubusercontent.com/nurasmaul4/Aplikasi/main/country-wise-average%20(2).csv')
-
-    def income_map(val):
-        mapper = {0:'Low Income', 1:'Lower Middle Income', 2:'Upper Middle Income',3:'High Income'}
-        return mapper[val]
-    def lldc_map(val):
-        mapper = {0:'Others', 2:'SIDS', 1:'LLDC'}
-        return mapper[val]
-
-    data['Income Classification'] = data['Income Classification'].apply(income_map)
-    
-    data.head()
-    
-    data.columns
-    
-    data.info()
-    
-    data.describe().T
-    
-    st.write("Check missing values in the dataframe")
-    data.isnull().sum()
-    
-    columns = list(['Severe Wasting', 'Wasting','Overweight', 'Stunting', 'Underweight'])
-
-    print('Descriptive Stats before imputation for columns with missing values: \n', '--'*35)
-
-    data['Wasting'].fillna(data['Wasting'].mean(), inplace=True)
-    data['Severe Wasting'].fillna(data['Severe Wasting'].mean(), inplace=True)
-    data['Overweight'].fillna(data['Overweight'].mean(), inplace=True)
-    data['Stunting'].fillna(data['Stunting'].mean(), inplace=True)
-    data['Underweight'].fillna(data['Underweight'].mean(), inplace=True)
-
-    print('Descriptive Stats after imputation: \n', '--'*35)
-    
-    st.write("Univariate Analysis")
-    # Functions that will help us with EDA plot
-    def odp_plots(df, col):
-        f,(ax1, ax2, ax3) = plt.subplots(1, 3, figsize = (15, 7.2))
-    
-    st.write("Distribution plots")
-    # Outlier, distribution for columns with outliers
-    boxplotcolumns = ['Severe Wasting', 'Wasting', 'Overweight', 'Stunting',
-                      'Underweight']
-    for cols in boxplotcolumns:
-        Q3 = data[cols].quantile(0.75)
-        Q1 = data[cols].quantile(0.25)
-        IQR = Q3 - Q1
-
-        print(f'{cols.capitalize()} column', '--'*40)
-        count = len(data.loc[(data[cols] < (Q1 - 1.5 * IQR)) | (data[cols] > (Q3 + 1.5 * IQR))])
-        print(f'no of records with outliers values: {count}')
-
-        
-    st.write("Multivariate Analysis")
-    corr = data.corr()
-    mask = np.zeros_like(corr, dtype = np.bool)
-    mask[np.triu_indices_from(mask)] = True
-    
-    # Filter for correlation value greater than threshold
-    sort = corr.abs().unstack()
-    sort = sort.sort_values(kind = "quicksort", ascending = False)
-    
-    st.write("Negara mana yang menunjukkan persentase Underweight tertinggi? ---> Bangladesh")
-    country = data.loc[:,['Country','Underweight']]
-    country['percunder'] = country.groupby('Country')['Underweight'].transform('max')
-    country = country.drop('Underweight',axis=1).drop_duplicates().sort_values('percunder', ascending=False).head()
-
-    fig.update_traces(rotation=90, pull=[0.2,0.03,0.1,0.03,0.1], textinfo="percent+label", showlegend=False)
     fig.show()
     
-    st.write("Negara mana yang menunjukkan persentase Kegemukan tertinggi? ---> Albania")
-    country = data.loc[:,['Country','Overweight']]
-    country['percunder'] = country.groupby('Country')['Overweight'].transform('max')
-    country = country.drop('Overweight',axis=1).drop_duplicates().sort_values('percunder', ascending=False).head()
-
-    fig = px.pie(country, names='Country', values='percunder', template='seaborn')
-    fig.update_traces(rotation=90, pull=[0.2,0.03,0.1,0.03,0.1], textinfo="percent+label", showlegend=False)
-    fig.show()
     
-    st.write("Kelas pendapatan mana yang memiliki persentase underweight tertinggi? ---> Pendapatan Menengah Bawah")
-    f,(ax1, ax2, ax3) = plt.subplots(1, 3, figsize = (15, 7.2))
-    sns.distplot(data['Underweight'], ax=ax1)
-
-    df_LM = data.loc[data['Income Classification'] == 'Lower Middle Income']
-    df_UM = data.loc[data['Income Classification'] == 'Upper Middle Income']
-    df_Low = data.loc[data['Income Classification'] == 'Low Income']
-    df_High = data.loc[data['Income Classification'] == 'High Income']
-
-    sns.distplot( df_LM['Underweight'],ax = ax2 , color = 'r')
-    sns.distplot( df_UM['Underweight'],ax = ax2, color = 'g')
-    sns.distplot( df_Low['Underweight'],ax = ax2, color = 'b')
-    sns.distplot( df_High['Underweight'],ax = ax2, color = 'y')
     
-    df = data.loc[:,['Income Classification','Underweight']]
-    df['maxunder'] = df.groupby('Income Classification')['Underweight'].transform('mean')
-    df = df.drop('Underweight', axis=1).drop_duplicates()
-    df = data.loc[:,['Income Classification','Underweight']]
-    df['maxunder'] = df.groupby('Income Classification')['Underweight'].transform('mean')
-    df = df.drop('Underweight', axis=1).drop_duplicates()
-
-    fig = sns.barplot(data=df, x='Income Classification', y='maxunder')
-    fig.set(xticklabels = ['LM', 'UM', 'Low', "High"])
-    plt.show()
     
-    df = data.loc[:,['Income Classification','Underweight']]
-    df['maxunder'] = df.groupby('Income Classification')['Underweight'].transform('max')
-    df = df.drop('Underweight', axis=1).drop_duplicates()
-
-    fig = px.pie(df, names='Income Classification', values='maxunder', template='seaborn')
-    fig.update_traces(rotation=90, pull=0.05, textinfo="percent+label", showlegend=False)
-    fig.show()
-    
-    st.write("Persentase underweight di Negara Terbelakang vs Negara Maju")
-    f,(ax1, ax2, ax3) = plt.subplots(1, 3, figsize = (15, 7.2))
-    df_with_LDC = data.loc[data['LDC'] == 1]
-    df_with_DC = data.loc[data['LDC'] == 0]
-
-    sns.distplot(data['Underweight'], ax=ax1)
-    sns.distplot( df_with_LDC['Underweight'],ax = ax2 , color = 'r')
-    sns.distplot( df_with_DC['Underweight'],ax = ax2, color = 'g')
-
-    df = data.loc[:,['LIFD','Underweight']]
-    df['maxunder'] = df.groupby('LIFD')['Underweight'].transform('mean')
-    df = df.drop('Underweight', axis=1).drop_duplicates()
-
-    fig = sns.barplot(data=df, x='LIFD', y='maxunder', ax=ax3)
-    fig.set(xticklabels = ['Not LIFD', 'LIFD'])
-    plt.show()
-    
-    st.write("Persentase Negara Kekurangan Pangan Berpenghasilan Rendah")
-    f,(ax1, ax2, ax3) = plt.subplots(1, 3, figsize = (15, 7.2))
-    df_with_LIFD = data.loc[data['LIFD'] == 1]
-    df_with_NLIFD = data.loc[data['LIFD'] == 0]
-
-    sns.distplot(data['Underweight'], ax=ax1)
-    sns.distplot( df_with_LIFD['Underweight'],ax = ax2 , color = 'r')
-    sns.distplot( df_with_NLIFD['Underweight'],ax = ax2, color = 'g')
-
-    df = data.loc[:,['LIFD','Underweight']]
-    df['maxunder'] = df.groupby('LIFD')['Underweight'].transform('mean')
-    df = df.drop('Underweight', axis=1).drop_duplicates()
-    df = data.loc[:,['LIFD','Underweight']]
-    df['maxunder'] = df.groupby('LIFD')['Underweight'].transform('mean')
-    df = df.drop('Underweight', axis=1).drop_duplicates()
-
-    fig = sns.barplot(data=df, x='LIFD', y='maxunder')
-    fig.set(xticklabels = ['Not LIFD', 'LIFD'])
-    plt.show()
-    
-    st.write("Analisis Underweight menurut Kelompok Pendapatan")
-    data["Income Classification"].value_counts()
-    
-    st.write("Negara Berkembang yang Terkurung Daratan vs Negara Berkembang Pulau Kecil vs Lainnya ---> Lainnya")
-    df = data.loc[:,['LLDC or SID2','Underweight']]
-    df['maxunder'] = df.groupby('LLDC or SID2')['Underweight'].transform('max')
-    df = df.drop('Underweight', axis=1).drop_duplicates()
-
-    fig = px.pie(df, names='LLDC or SID2', values='maxunder', template='seaborn')
-    fig.update_traces(rotation=90, pull=0.05, textinfo="percent+label", showlegend=False)
-    fig.show()
-    
-    st.write("Severe Wasting")
-    st.write("Ini adalah % anak usia 0–59 bulan yang berada di bawah minus tiga standar deviasi dari rata-rata berat badan terhadap tinggi badan")
-    sns.kdeplot(data=data['Severe Wasting'], shade=True)
-    plt.title('Distribution of Sever Wasting percentages in countries')
-    plt.show()
-    
-    st.write("Kita dapat melihat dari plot distribusi bahwa nilai persentase o setinggi 12% di beberapa negara. Dari scatter plot dapat diketahui bahwa persentase wasting parah yang tinggi sebagian besar ditemukan untuk ukuran sampel survei yang rendah.")
-    
-    st.write("Severe Wasting - Wasting - Overweight - Underweight")
-    sns.pairplot(data[['Severe Wasting','Overweight','Underweight', 'Stunting']])
-    plt.show()
-    
-    st.write("penduduk negara tersebut yang berusia di bawah 5 tahun")
-    sns.kdeplot(data=data['U5 Population (\'000s)'], shade=True)
-    plt.title('Distribution of U5 Population')
-    plt.show()
-    
-
     with modeling:
         st.write("Modelling")
         
