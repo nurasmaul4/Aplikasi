@@ -98,10 +98,28 @@ with preporcessing:
     print(float(omanprediction))
     
     st.write("Oman pergi ke tingkat pendapatan kedua")
-    from sklearn import tree
-    plt.figure(figsize=(20,15))
-    tree.plot_tree(dtree,filled=True,feature_names=xx.columns)
-    plt.show()
+    st.write("Stunting, Underweight dan usia penduduk di bawah lima tahun merupakan ciri-ciri penting")
+    
+    st.write("Korelasi antara fitur-fitur ini")
+    X[["Stunting","Underweight","U5 Population ('000s)"]].corr()
+    
+    st.write("Stunting dan Underweight memiliki korelasi positif yang kuat tetapi U5 tidak memiliki korelasi yang kuat dengan lainnya")
+    X[["Stunting","Overweight","U5 Population ('000s)"]].corr()
+    
+    st.write("Kegemukan tidak searah dengan Stunting dan U5. Beberapa kelebihan berat badan sebenarnya bisa menjadi indikator pendapatan positif tetapi sedikit indikator.")
+    X[["Income Classification","Overweight",]].corr()
+    X[X["country"].str.contains("turk",case=False)]
+    
+    st.write("Turkey is in very good position.")
+    
+    ("X.sort_values(by="Severe Wasting",ascending=True)[0:20]")
+    X[X["Income Classification"]==2].sort_values(by="Severe Wasting",ascending=True)[0:20]
+    X[X["Income Classification"]==2].sort_values(by="Underweight",ascending=True)[0:26]
+    
+    st.write("Kekurangan berat badan mungkin menjadi masalah yang lebih besar")
+    
+    
+    
     
     with modeling:
         st.write("Modelling")
