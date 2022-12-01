@@ -49,11 +49,7 @@ with preporcessing:
     st.write("""# Preprocessing""")
     import numpy as np
     import pandas as pd
-    # Basic packages
-    import pandas as pd, numpy as np, matplotlib.pyplot as plt, seaborn as sns, gc
-    from scipy import stats; from scipy.stats import zscore, norm, randint
-    import matplotlib.style as style; style.use('fivethirtyeight')
-
+    
     # Display settings
     pd.options.display.max_rows = 400
     pd.options.display.max_columns = 100
