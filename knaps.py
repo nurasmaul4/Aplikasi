@@ -129,7 +129,6 @@ with preporcessing:
     country['percunder'] = country.groupby('Country')['Underweight'].transform('max')
     country = country.drop('Underweight',axis=1).drop_duplicates().sort_values('percunder', ascending=False).head()
 
-    fig = px.pie(country, names='Country', values='percunder', template='seaborn')
     fig.update_traces(rotation=90, pull=[0.2,0.03,0.1,0.03,0.1], textinfo="percent+label", showlegend=False)
     fig.show()
     
