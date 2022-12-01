@@ -88,15 +88,7 @@ with preporcessing:
     X[X["country"]=="OMAN"]
     
     st.write("Oman is looks like 1 income level country")
-    st.write("buat model pohon keputusan untuk klasifikasi Pendapatan")
-    
-    from sklearn.tree import DecisionTreeClassifier
-    dtree=DecisionTreeClassifier(max_depth=3)
-    dtree.score(xx,y)
-    omanprediction=dtree.predict([[1.68,7.783333,3.55,16.066667,11.916667,332.156]])
-    print(float(omanprediction))
-    
-    st.write("Oman pergi ke tingkat pendapatan kedua")
+
     st.write("Stunting, Underweight dan usia penduduk di bawah lima tahun merupakan ciri-ciri penting")
     
     st.write("Korelasi antara fitur-fitur ini")
