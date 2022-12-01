@@ -282,7 +282,8 @@ with preporcessing:
     
 
     with modeling:
-        # with modeling:
+        st.write("Modelling")
         
     with implementation:
+        st.write("implementasi")
 
