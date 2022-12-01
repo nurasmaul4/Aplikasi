@@ -92,7 +92,7 @@ with preporcessing:
     
     data.describe().T
     
-    "# Check missing values in the dataframe"
+    st.write("Check missing values in the dataframe")
     data.isnull().sum()
     
     columns = list(['Severe Wasting', 'Wasting','Overweight', 'Stunting', 'Underweight'])
@@ -109,7 +109,7 @@ with preporcessing:
     print('Descriptive Stats after imputation: \n', '--'*35)
     display(data[columns].describe().T)
     
-    "#Univariate Analysis"
+    st.write("Univariate Analysis")
     # Functions that will help us with EDA plot
     def odp_plots(df, col):
         f,(ax1, ax2, ax3) = plt.subplots(1, 3, figsize = (15, 7.2))
@@ -133,7 +133,7 @@ with preporcessing:
     ax1.set_ylabel(col + ' Values', **kwargs)
     return plt.show()
     
-    "#Distribution plots"
+    st.write("Distribution plots")
     # Outlier, distribution for columns with outliers
     boxplotcolumns = ['Severe Wasting', 'Wasting', 'Overweight', 'Stunting',
                       'Underweight']
@@ -152,7 +152,7 @@ with preporcessing:
 
     del cols, IQR, boxplotcolumns
     
-    "#Multivariate Analysis"
+    st.write("Multivariate Analysis")
     corr = data.corr()
     mask = np.zeros_like(corr, dtype = np.bool)
     mask[np.triu_indices_from(mask)] = True
@@ -163,7 +163,7 @@ with preporcessing:
     sort = sort.sort_values(kind = "quicksort", ascending = False)
     display(sort[(sort > 0.7) & (sort < 1)])
     
-    "#Negara mana yang menunjukkan persentase Underweight tertinggi? ---> Bangladesh"
+    st.write("Negara mana yang menunjukkan persentase Underweight tertinggi? ---> Bangladesh")
     country = data.loc[:,['Country','Underweight']]
     country['percunder'] = country.groupby('Country')['Underweight'].transform('max')
     country = country.drop('Underweight',axis=1).drop_duplicates().sort_values('percunder', ascending=False).head()
@@ -172,7 +172,7 @@ with preporcessing:
     fig.update_traces(rotation=90, pull=[0.2,0.03,0.1,0.03,0.1], textinfo="percent+label", showlegend=False)
     fig.show()
     
-    "#Negara mana yang menunjukkan persentase Kegemukan tertinggi? ---> Albania"
+    st.write("Negara mana yang menunjukkan persentase Kegemukan tertinggi? ---> Albania")
     country = data.loc[:,['Country','Overweight']]
     country['percunder'] = country.groupby('Country')['Overweight'].transform('max')
     country = country.drop('Overweight',axis=1).drop_duplicates().sort_values('percunder', ascending=False).head()
@@ -181,7 +181,7 @@ with preporcessing:
     fig.update_traces(rotation=90, pull=[0.2,0.03,0.1,0.03,0.1], textinfo="percent+label", showlegend=False)
     fig.show()
     
-    "#Kelas pendapatan mana yang memiliki persentase underweight tertinggi? ---> Pendapatan Menengah Bawah"
+    st.write("Kelas pendapatan mana yang memiliki persentase underweight tertinggi? ---> Pendapatan Menengah Bawah")
     f,(ax1, ax2, ax3) = plt.subplots(1, 3, figsize = (15, 7.2))
     sns.distplot(data['Underweight'], ax=ax1)
 
@@ -214,7 +214,7 @@ with preporcessing:
     fig.update_traces(rotation=90, pull=0.05, textinfo="percent+label", showlegend=False)
     fig.show()
     
-    "#Persentase underweight di Negara Terbelakang vs Negara Maju"
+    st.write("Persentase underweight di Negara Terbelakang vs Negara Maju")
     f,(ax1, ax2, ax3) = plt.subplots(1, 3, figsize = (15, 7.2))
     df_with_LDC = data.loc[data['LDC'] == 1]
     df_with_DC = data.loc[data['LDC'] == 0]
@@ -231,7 +231,7 @@ with preporcessing:
     fig.set(xticklabels = ['Not LIFD', 'LIFD'])
     plt.show()
     
-    "#Persentase Negara Kekurangan Pangan Berpenghasilan Rendah"
+    st.write("Persentase Negara Kekurangan Pangan Berpenghasilan Rendah")
     f,(ax1, ax2, ax3) = plt.subplots(1, 3, figsize = (15, 7.2))
     df_with_LIFD = data.loc[data['LIFD'] == 1]
     df_with_NLIFD = data.loc[data['LIFD'] == 0]
@@ -251,10 +251,10 @@ with preporcessing:
     fig.set(xticklabels = ['Not LIFD', 'LIFD'])
     plt.show()
     
-    "#Analisis Underweight menurut Kelompok Pendapatan"
+    st.write("Analisis Underweight menurut Kelompok Pendapatan")
     data["Income Classification"].value_counts()
     
-    "#Negara Berkembang yang Terkurung Daratan vs Negara Berkembang Pulau Kecil vs Lainnya ---> Lainnya"
+    st.write("Negara Berkembang yang Terkurung Daratan vs Negara Berkembang Pulau Kecil vs Lainnya ---> Lainnya")
     df = data.loc[:,['LLDC or SID2','Underweight']]
     df['maxunder'] = df.groupby('LLDC or SID2')['Underweight'].transform('max')
     df = df.drop('Underweight', axis=1).drop_duplicates()
@@ -263,19 +263,19 @@ with preporcessing:
     fig.update_traces(rotation=90, pull=0.05, textinfo="percent+label", showlegend=False)
     fig.show()
     
-    "#Severe Wasting"
-    "#Ini adalah % anak usia 0–59 bulan yang berada di bawah minus tiga standar deviasi dari rata-rata berat badan terhadap tinggi badan"
+    st.write("Severe Wasting")
+    st.write("Ini adalah % anak usia 0–59 bulan yang berada di bawah minus tiga standar deviasi dari rata-rata berat badan terhadap tinggi badan")
     sns.kdeplot(data=data['Severe Wasting'], shade=True)
     plt.title('Distribution of Sever Wasting percentages in countries')
     plt.show()
     
     st.write("Kita dapat melihat dari plot distribusi bahwa nilai persentase o setinggi 12% di beberapa negara. Dari scatter plot dapat diketahui bahwa persentase wasting parah yang tinggi sebagian besar ditemukan untuk ukuran sampel survei yang rendah.")
     
-    "#Severe Wasting - Wasting - Overweight - Underweight"
+    st.write("Severe Wasting - Wasting - Overweight - Underweight")
     sns.pairplot(data[['Severe Wasting','Overweight','Underweight', 'Stunting']])
     plt.show()
     
-    "#penduduk negara tersebut yang berusia di bawah 5 tahun"
+    st.write("penduduk negara tersebut yang berusia di bawah 5 tahun")
     sns.kdeplot(data=data['U5 Population (\'000s)'], shade=True)
     plt.title('Distribution of U5 Population')
     plt.show()
@@ -287,4 +287,4 @@ with modeling:
 
 
 with implementation:
-    st.write("# Implementation")
+
