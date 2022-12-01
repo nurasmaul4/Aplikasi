@@ -119,7 +119,6 @@ with preporcessing:
     corr = data.corr()
     mask = np.zeros_like(corr, dtype = np.bool)
     mask[np.triu_indices_from(mask)] = True
-    sns.heatmap(corr, mask = mask,  linewidths = .5 )#, annot = True)
     
     # Filter for correlation value greater than threshold
     sort = corr.abs().unstack()
