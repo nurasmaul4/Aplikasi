@@ -95,7 +95,6 @@ with preporcessing:
     data['Underweight'].fillna(data['Underweight'].mean(), inplace=True)
 
     print('Descriptive Stats after imputation: \n', '--'*35)
-    display(data[columns].describe().T)
     
     st.write("Univariate Analysis")
     # Functions that will help us with EDA plot
