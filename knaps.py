@@ -49,7 +49,6 @@ with preporcessing:
     st.write("""# Preprocessing""")
     import numpy as np
     import pandas as pd
-    from sklearn.impute import SimpleImputer
     # Basic packages
     import pandas as pd, numpy as np, matplotlib.pyplot as plt, seaborn as sns, gc
     from scipy import stats; from scipy.stats import zscore, norm, randint
