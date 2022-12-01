@@ -101,21 +101,9 @@ with preporcessing:
     def odp_plots(df, col):
         f,(ax1, ax2, ax3) = plt.subplots(1, 3, figsize = (15, 7.2))
     
-    # Distribution plot with outliers
-    sns.distplot(df[col], ax = ax2, color = 'teal', fit = norm).set_title(f'{col} with outliers')
-    
     # Removing outliers, but in a new dataframe
     upperbound, lowerbound = np.percentile(df[col], [1, 99])
     y = pd.DataFrame(np.clip(df[col], upperbound, lowerbound))
-    
-    # Distribution plot without outliers
-    sns.distplot(y[col], ax = ax3, color = 'tab:orange', fit = norm).set_title(f'{col} without outliers')
-    
-    kwargs = {'fontsize':14, 'color':'black'}
-    ax1.set_title(col + ' Boxplot Analysis', **kwargs)
-    ax1.set_xlabel('Box', **kwargs)
-    ax1.set_ylabel(col + ' Values', **kwargs)
-
     
     
     st.write("Distribution plots")
