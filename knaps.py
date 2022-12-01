@@ -92,7 +92,6 @@ with preporcessing:
     
     from sklearn.tree import DecisionTreeClassifier
     dtree=DecisionTreeClassifier(max_depth=3)
-    dtree.fit(xx,y)
     dtree.score(xx,y)
     omanprediction=dtree.predict([[1.68,7.783333,3.55,16.066667,11.916667,332.156]])
     print(float(omanprediction))
