@@ -123,7 +123,6 @@ with preporcessing:
     # Filter for correlation value greater than threshold
     sort = corr.abs().unstack()
     sort = sort.sort_values(kind = "quicksort", ascending = False)
-    display(sort[(sort > 0.7) & (sort < 1)])
     
     st.write("Negara mana yang menunjukkan persentase Underweight tertinggi? ---> Bangladesh")
     country = data.loc[:,['Country','Underweight']]
