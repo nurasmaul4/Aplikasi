@@ -72,8 +72,17 @@ with preporcessing:
     X["country"]=country
     X
     
+    st.write("Grouping is an option")
+    X.groupby(by="Income Classification").mean()[["Overweight"]]
     
+    st.write("Lower income level have lower overweight percentages")
+    X.groupby(by="Income Classification").mean()[["Underweight"]]
     
+    st.write("jika tingkat pendapatan meningkat, tingkat Underweight menurun drastis. Negara-negara miskin benar-benar memiliki masalah pasokan makanan")
+    X[X["Income Classification"]<=0]["country"]
+    
+    st.write("Perang dan Teror dan Masalah Air dan tingkat pendapatan memiliki korelasi yang kuat.")
+    X[X["Income Classification"]==3]["country"]
     
     
     with modeling:
