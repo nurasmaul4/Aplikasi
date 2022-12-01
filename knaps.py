@@ -101,11 +101,6 @@ with preporcessing:
     def odp_plots(df, col):
         f,(ax1, ax2, ax3) = plt.subplots(1, 3, figsize = (15, 7.2))
     
-    # Removing outliers, but in a new dataframe
-    upperbound, lowerbound = np.percentile(df[col], [1, 99])
-    y = pd.DataFrame(np.clip(df[col], upperbound, lowerbound))
-    
-    
     st.write("Distribution plots")
     # Outlier, distribution for columns with outliers
     boxplotcolumns = ['Severe Wasting', 'Wasting', 'Overweight', 'Stunting',
