@@ -49,7 +49,6 @@ with preporcessing:
     st.write("""# Preprocessing""")
     import numpy as np
     import pandas as pd
-    import seaborn as sns
     import plotly.express as px
     import plotly.graph_objects as go
     from sklearn.impute import SimpleImputer
