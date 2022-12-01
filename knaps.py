@@ -114,12 +114,7 @@ with preporcessing:
         count = len(data.loc[(data[cols] < (Q1 - 1.5 * IQR)) | (data[cols] > (Q3 + 1.5 * IQR))])
         print(f'no of records with outliers values: {count}')
 
-        display(data.loc[(data[cols] < (Q1 - 1.5 * IQR)) | (data[cols] > (Q3 + 1.5 * IQR))].head())
-        print(f'EDA for {cols.capitalize()} column', '--'*40)
-        odp_plots(data, cols)
-
-    del cols, IQR, boxplotcolumns
-    
+        
     st.write("Multivariate Analysis")
     corr = data.corr()
     mask = np.zeros_like(corr, dtype = np.bool)
