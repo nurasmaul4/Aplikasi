@@ -72,7 +72,6 @@ with preporcessing:
         return mapper[val]
 
     data['Income Classification'] = data['Income Classification'].apply(income_map)
-    data['LLDC or SID2'] = data['LLDC or SID2'].apply(lldc_map)
     
     data.head()
     
