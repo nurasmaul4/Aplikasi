@@ -115,6 +115,11 @@ with preporcessing:
     with modeling:
         st.write("Modelling")
         
+        from sklearn.impute import KNNImputer
+        knn=KNNImputer()
+        X=knn.fit_transform(x)
+        X=pd.DataFrame(X)
+        
     with implementation:
         st.write("implementasi")
 
