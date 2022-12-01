@@ -63,7 +63,6 @@ with preporcessing:
 
     data = pd.read_csv('https://raw.githubusercontent.com/nurasmaul4/Aplikasi/main/country-wise-average%20(2).csv')
     data_by_country = pd.read_csv('https://raw.githubusercontent.com/nurasmaul4/Aplikasi/main/country-wise-average%20(2).csv')
-    data.drop(['Unnamed: 0','ISO code','Survey Year','Source','Report Author','Notes','Short Source'], axis=1, inplace=True)
 
     def income_map(val):
         mapper = {0:'Low Income', 1:'Lower Middle Income', 2:'Upper Middle Income',3:'High Income'}
