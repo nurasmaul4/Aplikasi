@@ -47,25 +47,31 @@ with Deskripsi_dataset:
 
 with preporcessing:
     st.write("""# Preprocessing""")
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    import seaborn as sns
+    import numpy as np # linear algebra
+    import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+   
+    estimate=pd.read_csv("https://raw.githubusercontent.com/nurasmaul4/Aplikasi/main/country-wise-average%20(2).csv")
+    average=pd.read_csv("https://raw.githubusercontent.com/nurasmaul4/Aplikasi/main/country-wise-average%20(2).csv")
+    average.head()
     
-    df = pd.read_csv("https://raw.githubusercontent.com/nurasmaul4/Aplikasi/main/country-wise-average%20(2).csv")
+    st.write("average.describe")
+    average.describe()
     
-    import plotly.express as px
-    name = df.groupby("Country")["Stunting"].mean().sort_values(ascending=False).index[:50]
-    yax = df.groupby("Country")["Stunting"].mean().sort_values(ascending=False).round()[:50]
-
-    fig = px.bar(df, y=yax, x=name, color = name, color_discrete_sequence=px.colors.sequential.Blugrn)
-    fig.update_layout(
-        title="Stunting Top 50 Countries",
-        xaxis_title="Country name",
-        yaxis_title="Count"
-    )
-    fig.update_xaxes(tickangle=-45)
-
-    fig.show()
+    x=average.iloc[:,1:]
+    x
+    
+    from sklearn.impute import KNNImputer
+    knn=KNNImputer()
+    X=knn.fit_transform(x)
+    X=pd.DataFrame(X)
+    
+    X.columns=["Income Classification","Severe Wasting","Wasting", "Overweight", "Stunting","Underweight","U5 Population ('000s)"]
+    X.describe()
+    
+    country=average.iloc[:,0:1]
+    X["country"]=country
+    X
+    
     
     
     
