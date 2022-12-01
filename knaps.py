@@ -131,7 +131,7 @@ with preporcessing:
     ax1.set_title(col + ' Boxplot Analysis', **kwargs)
     ax1.set_xlabel('Box', **kwargs)
     ax1.set_ylabel(col + ' Values', **kwargs)
-        return plt.show()
+    return plt.show()
     
     "#Distribution plots"
     # Outlier, distribution for columns with outliers
@@ -285,71 +285,6 @@ with modeling:
    
 # with modeling:
 
-#     st.markdown("# Model")
-#     # membagi data menjadi data testing(20%) dan training(80%)
-    # X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2,random_state=4)
 
-#     # X_train.shape, X_test.shape, y_train.shape, y_test.shape
-
-#     nb = st.checkbox("Metode Naive Bayes")
-#     knn = st.checkbox("Metode KNN")
-#     dt = st.checkbox("Metode Decision Tree")
-#     sb = st.button("submit")
-
-#     #Naive Bayes
-#     # Feature Scaling to bring the variable in a single scale
-#     sc = StandardScaler()
-#     X_train = sc.fit_transform(X_train)
-#     X_test = sc.transform(X_test)
-
-#     GaussianNB(priors=None)
-#     # Fitting Naive Bayes Classification to the Training set with linear kernel
-#     nvklasifikasi = GaussianNB()
-#     nvklasifikasi = nvklasifikasi.fit(X_train, y_train)
-
-#     # Predicting the Test set results
-#     y_pred = nvklasifikasi.predict(X_test)
-        
-#     y_compare = np.vstack((y_test,y_pred)).T
-#     nvklasifikasi.predict_proba(X_test)
-
-#     akurasi = round(100 * accuracy_score(y_test, y_pred))
-
-#     #Decision tree
-#     dt = DecisionTreeClassifier()
-#     dt.fit(X_train, y_train)
-
-#     # prediction
-#     dt.score(X_test, y_test)
-#     y_pred = dt.predict(X_test)
-#     #Accuracy
-#     akur = round(100 * accuracy_score(y_test,y_pred))
-
-#     K=10
-#     knn=KNeighborsClassifier(n_neighbors=K)
-#     knn.fit(X_train,y_train)
-#     y_pred=knn.predict(X_test)
-
-#     skor_akurasi = round(100 * accuracy_score(y_test,y_pred))
-    
-
-#     if nb:
-#         if sb:
-
-#             """## Naive Bayes"""
-            
-#             st.write('Model Naive Bayes accuracy score: {0:0.2f}'. format(akurasi))
-
-#     if knn:
-#         if sb:
-#             """## KNN"""
-
-#             st.write("Model KNN accuracy score : {0:0.2f}" . format(skor_akurasi))
-    
-#     if dt:
-#         if sb:
-#             """## Decision Tree"""
-#             st.write('Model Decission Tree Accuracy Score: {0:0.2f}'.format(akur))
-
-    with implementation:
-        st.write("# Implementation")
+with implementation:
+    st.write("# Implementation")
