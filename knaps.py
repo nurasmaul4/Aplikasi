@@ -112,7 +112,7 @@ with preporcessing:
     
     st.write("Turkey is in very good position.")
     
-    ("X.sort_values(by="Severe Wasting", ascending=True)[0:20]")
+
     X[X["Income Classification"]==2].sort_values(by="Severe Wasting",ascending=True)[0:20]
     X[X["Income Classification"]==2].sort_values(by="Underweight",ascending=True)[0:26]
     
