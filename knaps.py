@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 from sklearn import preprocessing
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
@@ -51,6 +50,7 @@ with preporcessing:
     import numpy as np
     import pandas as pd
     import matplotlib.pyplot as plt
+    %matplotlib inline
     import seaborn as sns
     import plotly.express as px
     import plotly.graph_objects as go
