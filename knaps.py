@@ -87,7 +87,6 @@ with preporcessing:
     columns = list(['Severe Wasting', 'Wasting','Overweight', 'Stunting', 'Underweight'])
 
     print('Descriptive Stats before imputation for columns with missing values: \n', '--'*35)
-    display(data[columns].describe().T)
 
     data['Wasting'].fillna(data['Wasting'].mean(), inplace=True)
     data['Severe Wasting'].fillna(data['Severe Wasting'].mean(), inplace=True)
