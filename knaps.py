@@ -132,7 +132,7 @@ with preporcessing:
     ax1.set_xlabel('Box', **kwargs)
     ax1.set_ylabel(col + ' Values', **kwargs)
 
-    return plt.show()
+    
     
     st.write("Distribution plots")
     # Outlier, distribution for columns with outliers
